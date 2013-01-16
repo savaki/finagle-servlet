@@ -71,3 +71,8 @@ In your web.xml file, you can use you.pkg.MyFinatraAdapter in place of the value
 ### ServiceFactory
 
 For finagle projects that don't use finatra, you can simply implement the ServiceFactory interface to bind any Service[Request, Response] to a servlet container.
+
+### License
+
+Released under the 
+<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>

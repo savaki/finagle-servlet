@@ -46,5 +46,3 @@ resolvers += "Finatra repo" at "http://repo.juliocapote.com/"
 // add web tasks
 seq(webSettings :_*)
 
-
-

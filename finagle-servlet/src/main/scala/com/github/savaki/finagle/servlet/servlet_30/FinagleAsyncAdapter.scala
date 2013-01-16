@@ -1,0 +1,21 @@
+package com.github.savaki.finagle.servlet.servlet_30
+
+import org.jboss.netty.handler.codec.http._
+import com.twitter.finagle.Service
+import javax.servlet.AsyncContext
+import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
+import com.github.savaki.finagle.servlet.FinagleServletAdapter
+
+/**
+ * @author matt.ho@gmail.com
+ */
+class FinagleAsyncAdapter(service: Service[HttpRequest, HttpResponse], asyncContext: AsyncContext) extends FinagleServletAdapter(service) with Runnable {
+
+  lazy val httpServletRequest = asyncContext.getRequest.asInstanceOf[HttpServletRequest]
+
+  lazy val httpServletResponse = asyncContext.getResponse.asInstanceOf[HttpServletResponse]
+
+  def complete() {
+    asyncContext.complete()
+  }
+}

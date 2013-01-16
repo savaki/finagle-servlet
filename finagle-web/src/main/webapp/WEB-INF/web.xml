@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+    <servlet>
+        <servlet-name>jetty</servlet-name>
+        <servlet-class>com.github.savaki.finagle.servlet.jetty.FinagleJettyServlet</servlet-class>
+        <init-param>
+            <param-name>service.factory.classname</param-name>
+            <param-value>com.github.savaki.finagle.servlet.EmptyServiceFactory</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>servlet-api-30</servlet-name>
+        <servlet-class>com.github.savaki.finagle.servlet.servlet_30.FinagleAsyncServlet</servlet-class>
+        <init-param>
+            <param-name>service.factory.classname</param-name>
+            <param-value>com.github.savaki.finagle.servlet.EmptyServiceFactory</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jetty</servlet-name>
+        <url-pattern>/jetty/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>servlet-api-30</servlet-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+</web-app>

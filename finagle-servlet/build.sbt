@@ -7,11 +7,10 @@ scalaVersion := "2.9.1"
 version := "0.1"
 
 {
-    val finagleVersion = "5.3.9"
+    val finatraVersion = "1.0.1"
     libraryDependencies ++= Seq(
-        "com.twitter" % "finagle-core" % finagleVersion withSources(),
-        "com.twitter" % "finagle-native" % finagleVersion withSources(),
-        "com.twitter" % "finagle-http" % finagleVersion withSources()
+        "org.mozilla" % "rhino" % "1.7R4" % "compile",
+        "com.twitter" % "finatra" % finatraVersion withSources()
     )
 }
 

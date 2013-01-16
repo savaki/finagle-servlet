@@ -4,11 +4,12 @@ import org.jboss.netty.handler.codec.http._
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import com.twitter.finagle.Service
 import scala.collection.JavaConversions._
+import com.twitter.finagle.http.{Request, Response}
 
 /**
  * @author matt.ho@gmail.com
  */
-abstract class FinagleServletAdapter(finagleService: Service[HttpRequest, HttpResponse]) {
+abstract class FinagleServletAdapter(finagleService: Service[Request, Response]) {
   def httpServletRequest: HttpServletRequest
 
   def httpServletResponse: HttpServletResponse
@@ -16,7 +17,7 @@ abstract class FinagleServletAdapter(finagleService: Service[HttpRequest, HttpRe
   def complete()
 
   def run() {
-    val request: HttpRequest = toHttpRequest(httpServletRequest)
+    val request: Request = toRequest(httpServletRequest)
     finagleService(request).onSuccess {
       response => onSuccess(response)
     }.onFailure {
@@ -46,7 +47,7 @@ abstract class FinagleServletAdapter(finagleService: Service[HttpRequest, HttpRe
     complete()
   }
 
-  def toHttpRequest(httpServletRequest: HttpServletRequest): HttpRequest = {
+  def toRequest(httpServletRequest: HttpServletRequest): Request = {
     val method = HttpMethod.valueOf(httpServletRequest.getMethod)
     val result = new DefaultHttpRequest(HttpVersion.HTTP_1_1, method, httpServletRequest.getRequestURI)
 
@@ -66,6 +67,6 @@ abstract class FinagleServletAdapter(finagleService: Service[HttpRequest, HttpRe
       result.setHeader("Content-Length", contentLength)
     }
 
-    result
+    Request(result)
   }
 }

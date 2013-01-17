@@ -16,6 +16,7 @@ trait FinagleServlet {
   override def init(config: ServletConfig) {
     val className: String = config.getInitParameter("service.factory.classname")
     val factory: ServiceFactory = Class.forName(className).newInstance().asInstanceOf[ServiceFactory]
+    factory.setServletContext(config.getServletContext)
     finagleService = factory.build
   }
 }

@@ -1,4 +1,4 @@
-name := "finatra-web"
+name := "finagle-web"
 
 organization := "com.github.savaki"
 

@@ -1,4 +1,4 @@
-name := "finatra-servlet"
+name := "finagle-servlet"
 
 organization := "com.github.savaki"
 
@@ -31,5 +31,6 @@ version := "0.1"
          "org.eclipse.jetty" % "jetty-servlets" % jettyVersion % "compile" withSources())
 }
 
+publishTo := Some(Resolver.file("hello",  new File( "/Users/matt/projects/maven-repo")))
 
 

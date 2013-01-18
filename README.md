@@ -1,7 +1,7 @@
-finatra-servlet
+finagle-servlet
 ===============
 
-Finatra servlet is an adapter to allow Finagle based applications including Finatra-based applications into a servlet container that supports either Jetty Continuations or the Servlet API 3.0.
+Finagle servlet is an adapter to allow Finagle based applications including Finatra-based applications into a servlet container that supports either Jetty Continuations or the Servlet API 3.0.
 
 <a name="Quick Start"></a>
 

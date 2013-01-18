@@ -66,7 +66,7 @@ class MyFinatraAdapter extends FinatraServiceFactory {
 }
 </pre>
 
-In your web.xml file, you can use you.pkg.MyFinatraAdapter in place of the value for *service.factory.classname*
+In your web.xml file, you can use your.pkg.MyFinatraAdapter in place of the value for *service.factory.classname*
 
 ### ServiceFactory
 

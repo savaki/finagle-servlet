@@ -6,7 +6,8 @@ scalaVersion := "2.9.1"
 
 version := "0.1"
 
-resolvers += "Finatra repo" at "http://repo.juliocapote.com/"
+//resolvers += "Finatra repo" at "http://repo.juliocapote.com/"
+resolvers += "Twitter Maven repo" at "http://maven.twttr.com/"
 
 {
     val finatraVersion = "1.0.1"

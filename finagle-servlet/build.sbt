@@ -4,12 +4,13 @@ organization := "com.github.savaki"
 
 scalaVersion := "2.9.1"
 
-version := "0.1"
+version := "0.1-SNAPSHOT"
+
+resolvers += "Twitter Maven repo" at "http://maven.twttr.com/"
 
 {
     val finatraVersion = "1.0.1"
     libraryDependencies ++= Seq(
-        "org.mozilla" % "rhino" % "1.7R4" % "compile",
         "com.twitter" % "finatra" % finatraVersion withSources()
     )
 }
@@ -23,14 +24,15 @@ version := "0.1"
 {
     val jettyVersion = "8.1.8.v20121106"
     libraryDependencies ++= Seq(
-         "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "compile" withSources(),
-         "org.eclipse.jetty" % "jetty-server" % jettyVersion % "compile" withSources(),
-         "org.eclipse.jetty" % "jetty-io" % jettyVersion % "compile" withSources(),
-         "org.eclipse.jetty" % "jetty-http" % jettyVersion % "compile" withSources(),
-         "org.eclipse.jetty" % "jetty-util" % jettyVersion % "compile" withSources(),
-         "org.eclipse.jetty" % "jetty-servlets" % jettyVersion % "compile" withSources())
+         "org.eclipse.jetty" % "jetty-server" % jettyVersion % "provided" withSources()
+    )
 }
 
-publishTo := Some(Resolver.file("hello",  new File( "/Users/matt/projects/maven-repo")))
-
+publishTo <<= version { (v: String) =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
 

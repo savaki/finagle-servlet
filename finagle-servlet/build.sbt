@@ -9,7 +9,7 @@ version := "0.1-SNAPSHOT"
 resolvers += "Twitter Maven repo" at "http://maven.twttr.com/"
 
 {
-    val finatraVersion = "1.0.1"
+    val finatraVersion = "1.1.1"
     libraryDependencies ++= Seq(
         "com.twitter" % "finatra" % finatraVersion withSources()
     )

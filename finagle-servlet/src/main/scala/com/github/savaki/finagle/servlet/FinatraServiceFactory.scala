@@ -21,6 +21,7 @@ trait FinatraServiceFactory extends ServiceFactory {
    * @param servletContext the current servletContext
    */
   def setServletContext(servletContext: ServletContext) {
+    System.setProperty("local_docroot", servletContext.getRealPath("/"))
     View.baseTemplatePath = servletContext.getRealPath(path)
   }
 

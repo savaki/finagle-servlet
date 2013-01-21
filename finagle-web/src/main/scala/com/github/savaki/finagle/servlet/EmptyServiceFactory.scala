@@ -21,11 +21,21 @@ class EmptyServiceFactory extends Service[Request, Response] with ServiceFactory
   def build: Service[Request, Response] = this
 
   def apply(request: Request): Future[Response] = {
+    val params: String = request.params.toList.map(entry => "%-20s = %s".format(entry._1, entry._2)).sorted.mkString("\n")
+    val headers:String = request.headers.toList.map(entry => "%-20s = %s".format(entry._1, entry._2)).sorted.mkString("\n")
     val content =
       """
         |# http properties
         |uri  = %s
-      """.stripMargin.format(request.uri)
+        |path = %s
+        |
+        |# parameters
+        |%s
+        |
+        |# headers
+        |%s
+      """.stripMargin.format(request.uri, request.path, params, headers)
+
 
     val response = new DefaultHttpResponse(request.getProtocolVersion(), HttpResponseStatus.OK)
     response.setContent(ChannelBuffers.wrappedBuffer(content.getBytes("UTF-8")))

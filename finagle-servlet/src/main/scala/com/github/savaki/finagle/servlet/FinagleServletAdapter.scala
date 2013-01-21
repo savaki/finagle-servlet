@@ -49,7 +49,14 @@ abstract class FinagleServletAdapter(finagleService: Service[Request, Response])
 
   def toRequest(httpServletRequest: HttpServletRequest): Request = {
     val method = HttpMethod.valueOf(httpServletRequest.getMethod)
-    val result = new DefaultHttpRequest(HttpVersion.HTTP_1_1, method, httpServletRequest.getRequestURI)
+
+    val uri = if (httpServletRequest.getQueryString == null) {
+      httpServletRequest.getRequestURI
+    } else {
+      httpServletRequest.getRequestURI + "?" + httpServletRequest.getQueryString
+    }
+
+    val result = new DefaultHttpRequest(HttpVersion.HTTP_1_1, method, uri)
 
     httpServletRequest.getHeaderNames.foreach {
       headerName =>

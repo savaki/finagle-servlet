@@ -14,7 +14,7 @@ Paste the following block of code into your web.xml file to use Jetty style cont
 
 <pre>
 &lt;web-app&gt;
-  &lt;-- define a FinagleJettyServlet to use Jetty style continuations -&gt;
+  &lt;!-- define a FinagleJettyServlet to use Jetty style continuations --&gt;
   &lt;servlet&gt;
     &lt;servlet-name&gt;jetty&lt;/servlet-name&gt;
     &lt;servlet-class&gt;com.github.savaki.finagle.servlet.jetty.FinagleJettyServlet&lt;/servlet-class&gt;
@@ -32,7 +32,7 @@ For a Servlet 3.0 container and support for AsyncContext, paste the following co
 
 <pre>
 &lt;web-app&gt;
-  &lt;-- define a FinagleAsyncServlet to use the Servlet API 3.0 -&gt;
+  &lt;!-- define a FinagleAsyncServlet to use the Servlet API 3.0 --&gt;
   &lt;servlet&gt;
     &lt;servlet-name&gt;async&lt;/servlet-name&gt;
     &lt;servlet-class&gt;com.github.savaki.finagle.servlet.servlet_30.FinagleAsyncServlet&lt;/servlet-class&gt;
